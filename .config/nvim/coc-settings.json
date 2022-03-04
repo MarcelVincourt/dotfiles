@@ -3,23 +3,42 @@
         "clangd": {
             "command": "clangd",
             "filetypes": ["c", "cc", "cpp", "c++", "objc", "objcpp"]
+        },
+        "go": {
+            "command": "gopls",
+            "rootPatterns": ["go.mods"],
+            "trace.server": "verbose",
+            "filetypes": ["go"]
+        },
+        "bash": {
+            "command": "bash-language-server",
+            "args": ["start"],
+            "filetypes": ["sh"],
+            "ignoredRootPaths": ["~"]
         }
     },
     "diagnostic.errorSign": "✘",
     "diagnostic.infoSign": "ℹ",
     "diagnostic.hintSign": "➤",
-    "coc.preferences.colorSupport": true,
-    "coc.preferences.formatOnSaveFiletypes": ["python"],
+    "coc.preferences.formatOnSaveFiletypes": ["python", "go", "c"],
+    "coc.preferences.formatOnType": true,
+    "coc.preferences.willSaveHandlerTimeout": 1000,
 
     "eslint.autoFixOnSave": true,
 
     "json.enable": true,
     "json.format.enable": true,
 
+    "go.enable": true,
+    "go.goplsOptions": {
+        "experimentalPostfixCompletions": true,
+        "staticcheck": true
+    },
+
 
     "pyright.enable": true,
     "python.analysis.typeCheckingMode": "strict",
-    "python.linting.pylintEnabled": false,
+    "python.linting.pylintEnabled": true,
     "python.linting.enabled": true,
     "python.linting.flake8Enabled": true,
     "python.linting.lintOnSave": true,

@@ -1,0 +1,121 @@
+source $HOME/.config/nvim/vim-plug/plugins.vim
+
+set termguicolors
+set number
+set tabstop=4 softtabstop=0 expandtab shiftwidth=4 smarttab  
+set clipboard
+" Give more space for displaying messages.
+set cmdheight=2
+" TextEdit might fail if hidden is not set.
+set hidden
+" Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
+" delays and poor user experience.
+set updatetime=300
+set colorcolumn=120
+highlight ColorColumn ctermbg=red
+set scrolloff=999
+
+let g:netrw_liststyle = 3
+let g:netrw_browse_split = 4
+let g:netrw_winsize = 25
+"augroup ProjectDrawer
+"  autocmd!
+"  autocmd VimEnter * :Vexplore
+"augroup END
+
+" PLUGINS!
+call plug#begin()
+  "Plug 'preservim/nerdtree' 
+  Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
+  Plug 'vim-airline/vim-airline'
+  Plug 'pboettch/vim-cmake-syntax'
+  Plug 'flazz/vim-colorschemes'
+call plug#end()
+
+colorscheme gruvbox 
+
+"nnoremap <leader>n :NERDTreeFocus<CR>
+"nnoremap <C-n> :NERDTree<CR>
+nnoremap <C-t> :Lexplore<CR>
+nnoremap <C-f> :Lexplore<CR>
+
+" COC SETTINGS!!
+
+" Use <c-space> to trigger completion.
+if has('nvim')
+  inoremap <silent><expr> <c-space> coc#refresh()
+else
+  inoremap <silent><expr> <c-@> coc#refresh()
+endif
+
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+
+"nmap <silent><space> f <Plug>(coc-format)<CR>
+nnoremap <silent><space> f :call CocAction('format')<CR>
+
+" Symbol renaming.
+nmap CR <Plug>(coc-rename)
+
+" Use K to show documentation in preview window.
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  elseif (coc#rpc#ready())
+    call CocActionAsync('doHover')
+  else
+    execute '!' . &keywordprg . " " . expand('<cword>')
+  endif
+endfunction
+
+" Use tab for trigger completion with characters ahead and navigate.
+" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
+" other plugin before putting this into your config.
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+
+" Run the Code Lens action on the current line.
+nmap CL  <Plug>(coc-codelens-action)
+
+" Select Window
+map <C-j> <C-W>j
+map <C-k> <C-W>k
+map <C-h> <C-W>h
+map <C-l> <C-W>l
+
+" undo tab
+nnoremap <S-Tab> <<
+inoremap <S-Tab> <C-d> 
+
+" Show all diagnostics.
+nnoremap <silent><nowait> <space>a  :<C-u>CocDiagnostics<cr>
+
+
+nnoremap <C-Right> :vertical resize +5<CR>
+nnoremap <C-Left> :vertical resize -5<CR>
+nnoremap * *N
+nnoremap # #N
+
+" C development!!
+augroup project
+    autocmd!
+    autocmd BufRead,BufNewFile *.h,*.c set filetype=c.doxygen
+augroup END
