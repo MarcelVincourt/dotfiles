@@ -2,7 +2,9 @@ source $HOME/.config/nvim/vim-plug/plugins.vim
 
 set termguicolors
 set number
+set relativenumber
 set tabstop=4 softtabstop=0 expandtab shiftwidth=4 smarttab  
+set autoindent
 set clipboard
 " Give more space for displaying messages.
 set cmdheight=2
@@ -17,7 +19,9 @@ set scrolloff=999
 
 let g:netrw_liststyle = 3
 let g:netrw_browse_split = 4
-let g:netrw_winsize = 25
+let g:netrw_banner = 0
+let g:netrw_winsize = 15
+let g:netrw_altv = 1
 "augroup ProjectDrawer
 "  autocmd!
 "  autocmd VimEnter * :Vexplore
@@ -25,9 +29,8 @@ let g:netrw_winsize = 25
 
 " PLUGINS!
 call plug#begin()
-  "Plug 'preservim/nerdtree' 
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
-
+  Plug 'preservim/nerdtree'
   Plug 'vim-airline/vim-airline'
   Plug 'pboettch/vim-cmake-syntax'
   Plug 'flazz/vim-colorschemes'
@@ -35,10 +38,20 @@ call plug#end()
 
 colorscheme gruvbox 
 
-"nnoremap <leader>n :NERDTreeFocus<CR>
-"nnoremap <C-n> :NERDTree<CR>
-nnoremap <C-t> :Lexplore<CR>
-nnoremap <C-f> :Lexplore<CR>
+nnoremap <leader>n :NERDTreeFocus<CR>
+nnoremap <C-n> :NERDTree<CR>
+nnoremap <C-t> :NERDTreeToggle<CR>
+" Start NERDTree and put the cursor back in the other window.
+autocmd VimEnter * NERDTree | wincmd p
+
+" Start NERDTree when Vim is started without file arguments.
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists('s:std_in') | NERDTree | endif
+
+" Close the tab if NERDTree is the only window remaining in it.
+autocmd BufEnter * if winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
+"nnoremap <C-t> :Vexplore<CR>
+"nnoremap <C-f> :Vexplore<CR>
 
 " COC SETTINGS!!
 
@@ -96,6 +109,8 @@ endfunction
 nmap CL  <Plug>(coc-codelens-action)
 
 " Select Window
+
+map <C-l> <NOP>
 map <C-j> <C-W>j
 map <C-k> <C-W>k
 map <C-h> <C-W>h

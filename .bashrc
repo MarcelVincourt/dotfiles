@@ -1,5 +1,5 @@
 # ~/.bashrc: executed by bash(1) for non-login shells.
-# see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
+
 # for examples
 
 # If not running interactively, don't do anything
@@ -59,7 +59,14 @@ fi
 parse_git_branch() {
     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
 }
-export PS1="[\[\e[33;40m\]\w\[\e[m\]] \[\e[91m\]\$(parse_git_branch)\[\e[00m\]>"
+#export PS1="[\[\e[33;40m\]\w\[\e[m\]] \[\e[91m\]\$(parse_git_branch)\[\e[00m\]>"
+
+# Prompt
+RED="\[\e[31m\]"
+GREEN="\[\e[32m\]"
+YELLOW="\[\e[33m\]"
+RESET="\[\e[39m\]"
+export PS1="$YELLOW[\w] $RED\$(parse_git_branch)$RESET>"
 #if [ "$color_prompt" = yes ]; then
 #    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
 #else
@@ -121,12 +128,17 @@ if ! shopt -oq posix; then
 fi
 
 
-export PATH_GCCARM=/home/marcel/.local/SimplicityStudio_v5/developer/toolchains/gnu_arm/7.2_2017q4
-export PATH_SCMD=/home/marcel/.local/SimplicityStudio_v5/developer/adapter_packs/commander
-export PATH=/home/marcel/.local/SimplicityStudio_v5/developer/toolchains/gnu_arm/7.2_2017q4/bin:$PATH
+export PATH_GCCARM=/home/marcel/SimplicityStudio_v5/developer/toolchains/gnu_arm/7.2_2017q4
+export PATH_SCMD=/home/marcel/SimplicityStudio_v5/developer/adapter_packs/commander
+export PATH=/home/marcel/SimplicityStudio_v5/developer/toolchains/gnu_arm/7.2_2017q4/bin:$PATH
 export PATH=/home/marcel/Downloads/android_studio/bin:$PATH
+export PATH=/home/marcel/.local/bin:$PATH
 export PATH=$PATH:/usr/local/go/bin
 export PATH="$PATH:$(go env GOPATH)/bin"
+export PATH=/home/marcel/pycharm/bin:$PATH
+
+export MAKEFLAGS="-j $(grep -c ^processor /proc/cpuinfo)"
+
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
@@ -141,3 +153,4 @@ export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 alias luamake=/home/marcel/.config/nvim/lua-language-server/3rd/luamake/luamake
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 
+. "$HOME/.cargo/env"

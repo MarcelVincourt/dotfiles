@@ -37,10 +37,13 @@
 
 
     "pyright.enable": true,
+    "python.pythonPath": "/usr/bin/python3",
     "python.analysis.typeCheckingMode": "strict",
-    "python.linting.pylintEnabled": true,
+    "python.linting.pylintEnabled": false,
+    "python.linting.pylintArgs": ["--extension-pkg-whitelist=PyQt5.QtGui,PyQt5.QtCore", "--extension-pkg-allow-list=PyQt5.QtWidgets"],
     "python.linting.enabled": true,
-    "python.linting.flake8Enabled": true,
+    "python.linting.flake8Enabled": false,
+    "python.linting.flake8Args": ["max-line_length=120"],
     "python.linting.lintOnSave": true,
     "python.formatting.provider": "black",
     "python.formatting.blackPath": "/home/marcel/.local/bin/black",
