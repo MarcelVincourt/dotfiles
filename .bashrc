@@ -59,14 +59,42 @@ fi
 parse_git_branch() {
     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
 }
+
+git_status() {
+    local STATUS=$(git status -s 2> /dev/null)
+    local ADDED=$(echo "$STATUS" | grep '??' | wc -l)
+    local DELETED=$(echo "$STATUS" | grep ' D' | wc -l)
+    local MODIFIED=$(echo "$STATUS" | grep ' M' | wc -l)
+    local STATS=''
+
+    if [ $ADDED != 0 ]; then
+        STATS="A: $ADDED"
+    fi
+
+    if [ $DELETED != 0 ]; then
+        STATS="$STATS D: $DELETED"
+    fi
+
+    if [ $MODIFIED != 0 ]; then
+        STATS="$STATS M: $MODIFIED"
+    fi
+    echo "$STATS"
+}
 #export PS1="[\[\e[33;40m\]\w\[\e[m\]] \[\e[91m\]\$(parse_git_branch)\[\e[00m\]>"
 
 # Prompt
 RED="\[\e[31m\]"
 GREEN="\[\e[32m\]"
 YELLOW="\[\e[33m\]"
+YELLOW_BG="\[\e[30;103m\]"
 RESET="\[\e[39m\]"
-export PS1="$YELLOW[\w] $RED\$(parse_git_branch)$RESET>"
+RESET_BG="\[\e[0m\]"
+BLUE_BG="\[\e[30;44m\]"
+__PS1_GIT=${YELLOW_BG}'`__git_ps1`'
+__PS1_STATS='`git_status`'
+#export PS1="$BLUE_BG[\w] $YELLOW_BG\$(parse_git_branch)$RESET_BG>"
+#export PS1="$BLUE_BG \w $YELLOW_BG $(__git_ps1) $RESET_BG>"
+export PS1="${BLUE_BG} \w ${__PS1_GIT}${__PS1_STATS}${RESET_BG}>"
 #if [ "$color_prompt" = yes ]; then
 #    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
 #else
@@ -137,9 +165,6 @@ export PATH=$PATH:/usr/local/go/bin
 export PATH="$PATH:$(go env GOPATH)/bin"
 export PATH=/home/marcel/pycharm/bin:$PATH
 
-export MAKEFLAGS="-j $(grep -c ^processor /proc/cpuinfo)"
-
-
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
@@ -154,3 +179,8 @@ alias luamake=/home/marcel/.config/nvim/lua-language-server/3rd/luamake/luamake
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 
 . "$HOME/.cargo/env"
+
+
+# Wasmer
+export WASMER_DIR="/home/marcel/.wasmer"
+[ -s "$WASMER_DIR/wasmer.sh" ] && source "$WASMER_DIR/wasmer.sh"

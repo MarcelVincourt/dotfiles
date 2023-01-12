@@ -38,6 +38,7 @@ local on_attach = function(client, bufnr)
     end
 end
 
+
 local lsp_flags = {
   -- This is the default in Nvim 0.7+
     debounce_text_changes = 150,
@@ -48,20 +49,22 @@ require('lspconfig')['tsserver'].setup{
     flags = lsp_flags,
 }
 
---require('lspconfig')['python-lsp-black'].setup(){
---    on_attach = on_attach,
---    flags = lsp_flags,
---    settings = {
---        pylsp = {
---            plugins = {
---                black = {
---                    enabled = "true",
---                    line_length = "120",
---                },
---            },
---        },
---    },
---}
+
+require('lspconfig')['eslint'].setup{
+    on_attach = on_attach,
+    flags = lsp_flags,
+}
+
+require('lspconfig')['clangd'].setup{
+    on_attach = on_attach,
+    flags = lsp_flags,
+    cmd = {"clangd-12"}
+}
+
+require('lspconfig')['bashls'].setup{
+    on_attach = on_attach,
+    flags = lsp_flags,
+}
 
 require('lspconfig')['pyright'].setup{
     on_attach = on_attach,
@@ -73,12 +76,24 @@ require('lspconfig')['pyright'].setup{
                 typeCheckingMode = "strict",
             },
         },
-        plugins = {
-            black = {
-                enabled = "true",
-                line_length = "120",
-            },
-        },
     },
 }
 
+-- require('lspconfig')['pylsp'].setup{
+--     on_attach = on_attach,
+--     flags = lsp_flags,
+-- }
+
+-- local languages = {
+--     python = {black}
+-- }
+
+-- require('lspconfig')['efm'].setup {
+--     on_attach = on_attach,
+--     init_options = {documentFormatting = true},
+--     fileTypes = vim.tbl_keys(languages),
+--     settings = {
+--         rootMarkers = {".git/"},
+--         languages = languages
+--     }
+-- }

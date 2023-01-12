@@ -5,7 +5,8 @@ require("settings").config()
 require("keybindings").keys()
 require("config.nvim-tree")
 require("config.lsp")
-require("config/cmp")
+require("config.cmp")
+--require("config.efm")
 
 
 local function filetype()
