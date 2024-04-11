@@ -19,7 +19,7 @@ set.ruler = true
 set.updatetime = 300
 set.colorcolumn = "88"
 --vim.api.nvim_set_hl(0, "ColorColumn", { ctermbg=0, bg=Red })
-set.scrolloff = 999
+set.scrolloff = 10
 set.laststatus =2
 set.showcmd = true
 set.showmode = true

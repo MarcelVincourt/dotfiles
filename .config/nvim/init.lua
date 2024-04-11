@@ -1,17 +1,26 @@
+-- disable netrw at the very start of your init.lua
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+vim.lsp.set_log_level("debug")
 
 require("colors").color()
 require("plugins").setup()
 require("settings").config()
 require("keybindings").keys()
 require("config.nvim-tree")
-require("config.lsp")
 require("config.cmp")
+require("config.lsp")
+--require("vim.lsp.health").check()
 --require("config.efm")
-
 
 local function filetype()
   return string.format(" %s ", vim.bo.filetype):upper()
 end
+
+vim.cmd [[
+autocmd VimEnter * NvimTreeOpen
+]]
+
 
 local function lineinfo()
   if vim.bo.filetype == "alpha" then

@@ -164,6 +164,7 @@ export PATH=/home/marcel/.local/bin:$PATH
 export PATH=$PATH:/usr/local/go/bin
 export PATH="$PATH:$(go env GOPATH)/bin"
 export PATH=/home/marcel/pycharm/bin:$PATH
+export PATH=~/.npm-global/bin:$PATH
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
@@ -174,6 +175,8 @@ alias g=git
 alias vim=nvim
 alias python=python3
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+export DENO_INSTALL="/home/marcel/.deno"
+export PATH="$DENO_INSTALL/bin:$PATH"
 
 alias luamake=/home/marcel/.config/nvim/lua-language-server/3rd/luamake/luamake
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
@@ -184,3 +187,6 @@ alias dotfiles='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 # Wasmer
 export WASMER_DIR="/home/marcel/.wasmer"
 [ -s "$WASMER_DIR/wasmer.sh" ] && source "$WASMER_DIR/wasmer.sh"
+
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash

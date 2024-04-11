@@ -25,6 +25,7 @@ require('packer').startup(function(use)
     -- Packer can manage itself
     use 'wbthomason/packer.nvim'
     use { "ellisonleao/gruvbox.nvim" }
+    use { "catppuccin/nvim", as = "catppuccin" }
     use { "rebelot/kanagawa.nvim" }
 
     use {
@@ -36,11 +37,12 @@ require('packer').startup(function(use)
 
     use 'neovim/nvim-lspconfig'
     use 'hrsh7th/nvim-cmp' -- Autocompletion plugin
-    use 'hrsh7th/cmp-nvim-lsp' -- LSP source for nvim-cmp
     use 'hrsh7th/cmp-path'
     use 'hrsh7th/cmp-buffer'
+    use 'hrsh7th/cmp-nvim-lsp' -- LSP source for nvim-cmp
 
     use 'onsails/lspkind.nvim'
+    use 'github/copilot.vim'
 
 
 end)
