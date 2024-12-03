@@ -30,6 +30,7 @@ env:
   # available, otherwise `xterm-256color` is used.
   #TERM: alacritty
   TERM: xterm-256color
+    #tabspaces: '4'
 
 window:
   # Window dimensions (changes require restart)
@@ -100,7 +101,7 @@ window:
   # Override the variant of the GTK theme. Commonly supported values are `dark`
   # and `light`. Set this to `None` to use the default theme variant.
   #gtk_theme_variant: None
-
+tabspaces: 2
 #scrolling:
   # Maximum number of lines in the scrollback buffer.
   # Specifying '0' will disable scrolling.

@@ -4,8 +4,7 @@
 
 # If not running interactively, don't do anything
 case $- in
-    *i*) ;;
-      *) return;;
+    *i*) ;; *) return;;
 esac
 
 # don't put duplicate lines or lines starting with space in the history.
@@ -95,45 +94,8 @@ __PS1_STATS='`git_status`'
 #export PS1="$BLUE_BG[\w] $YELLOW_BG\$(parse_git_branch)$RESET_BG>"
 #export PS1="$BLUE_BG \w $YELLOW_BG $(__git_ps1) $RESET_BG>"
 export PS1="${BLUE_BG} \w ${__PS1_GIT}${__PS1_STATS}${RESET_BG}>"
-#if [ "$color_prompt" = yes ]; then
-#    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
-#else
-#    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
-#fi
-#unset color_prompt force_color_prompt
-#
-## If this is an xterm set the title to user@host:dir
-#case "$TERM" in
-#xterm*|rxvt*)
-#    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
-#    ;;
-#*)
-#    ;;
-#esac
 
-# enable color support of ls and also add handy aliases
-if [ -x /usr/bin/dircolors ]; then
-    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-    alias ls='ls --color=auto'
-    #alias dir='dir --color=auto'
-    #alias vdir='vdir --color=auto'
 
-    alias grep='grep --color=auto'
-    alias fgrep='fgrep --color=auto'
-    alias egrep='egrep --color=auto'
-fi
-
-# colored GCC warnings and errors
-#export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
-
-# some more ls aliases
-alias ll='ls -alF'
-alias la='ls -A'
-alias l='ls -CF'
-
-# Add an "alert" alias for long running commands.  Use like so:
-#   sleep 10; alert
-alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
 # Alias definitions.
 # You may want to put all your additions into a separate file like
@@ -164,29 +126,23 @@ export PATH=/home/marcel/.local/bin:$PATH
 export PATH=$PATH:/usr/local/go/bin
 export PATH="$PATH:$(go env GOPATH)/bin"
 export PATH=/home/marcel/pycharm/bin:$PATH
+export PATH="$PATH:/opt/nvim-linux64/bin"
 export PATH=~/.npm-global/bin:$PATH
+export PATH=/home/marcel/Applications/nanopb/generator:$PATH
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 #personal aliasses
-alias g=git
-alias vim=nvim
-alias python=python3
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 export DENO_INSTALL="/home/marcel/.deno"
 export PATH="$DENO_INSTALL/bin:$PATH"
 
-alias luamake=/home/marcel/.config/nvim/lua-language-server/3rd/luamake/luamake
-alias dotfiles='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
-
 . "$HOME/.cargo/env"
 
 
-# Wasmer
-export WASMER_DIR="/home/marcel/.wasmer"
-[ -s "$WASMER_DIR/wasmer.sh" ] && source "$WASMER_DIR/wasmer.sh"
+
 
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
