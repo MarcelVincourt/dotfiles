@@ -15,7 +15,7 @@ cd "${dotfiledir}" || exit
 # create symlinks (will overwrite old dotfiles)
 for file in "${files[@]}"; do
     echo "Creating symlink to ${dotfiledir}/.${file} in ${HOME}/.${file}"
-    #ln -sf "${dotfiledir}/.${file}" "${HOME}/.${file}"
+    ln -sf "${dotfiledir}/.${file}" "${HOME}/.${file}"
 done
 
 echo "Installation Complete!"
