@@ -22,3 +22,7 @@ vim.keymap.set('n', '#', '#N', opts)
 
 -- toggle nvimtree
 vim.keymap.set('n', '<C-n>', ':NvimTreeToggle<CR>', { noremap = true, silent = true })
+
+-- toggle terminal
+vim.keymap.set("t", "<Esc>", [[<C-\><C-n>]], { noremap = true })
+

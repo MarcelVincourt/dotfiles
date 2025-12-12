@@ -1,0 +1,3 @@
+# Ignore NVIM plugin directories
+pack/
+plugin/
