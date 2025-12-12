@@ -118,9 +118,9 @@ if ! shopt -oq posix; then
 fi
 
 
-export PATH_GCCARM=/home/marcel/SimplicityStudio_v5/developer/toolchains/gnu_arm/7.2_2017q4
+export PATH_GCCARM=/home/marcel/SimplicityStudio_v5/developer/toolchains/gnu_arm/12.2.rel1_2023.7/
 export PATH_SCMD=/home/marcel/SimplicityStudio_v5/developer/adapter_packs/commander
-export PATH=/home/marcel/SimplicityStudio_v5/developer/toolchains/gnu_arm/7.2_2017q4/bin:$PATH
+export SIMPLICITY_SDK_PATH=/home/marcel/SimplicityStudio/SDKs/simplicity_sdk
 export PATH=/home/marcel/Downloads/android_studio/bin:$PATH
 export PATH=/home/marcel/.local/bin:$PATH
 export PATH=$PATH:/usr/local/go/bin
@@ -129,6 +129,7 @@ export PATH=/home/marcel/pycharm/bin:$PATH
 export PATH="$PATH:/opt/nvim-linux64/bin"
 export PATH=~/.npm-global/bin:$PATH
 export PATH=/home/marcel/Applications/nanopb/generator:$PATH
+export PATH=$HOME/Applications/avr8-gnu-toolchain-linux_x86_64/bin:$PATH
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
@@ -145,4 +146,5 @@ export PATH="$DENO_INSTALL/bin:$PATH"
 
 
 
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+eval "$(uv generate-shell-completion bash)"
+eval "$(uv generate-shell-completion bash)"
