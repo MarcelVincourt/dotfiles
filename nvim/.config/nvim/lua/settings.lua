@@ -57,7 +57,7 @@ vim.opt.wrap = false
 vim.opt.colorcolumn = "80"
 
 vim.o.mouse="a"
---vim.opt.clipboard = 'unnamedplus'
+vim.opt.clipboard = 'unnamedplus'
 
 -- Automatically build CMake projects on save
 --vim.api.nvim_create_autocmd("BufWritePost", {

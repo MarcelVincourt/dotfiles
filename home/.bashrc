@@ -127,6 +127,7 @@ export PATH=$PATH:/usr/local/go/bin
 export PATH="$PATH:$(go env GOPATH)/bin"
 export PATH=/home/marcel/pycharm/bin:$PATH
 export PATH="$PATH:/opt/nvim-linux64/bin"
+export PATH="$PATH:/opt/nvim-linux-x86_64/bin"
 export PATH=~/.npm-global/bin:$PATH
 export PATH=/home/marcel/Applications/nanopb/generator:$PATH
 export PATH=$HOME/Applications/avr8-gnu-toolchain-linux_x86_64/bin:$PATH
@@ -143,8 +144,4 @@ export PATH="$DENO_INSTALL/bin:$PATH"
 . "$HOME/.cargo/env"
 
 
-
-
-
-eval "$(uv generate-shell-completion bash)"
 eval "$(uv generate-shell-completion bash)"
